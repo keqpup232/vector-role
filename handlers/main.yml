@@ -1,7 +1,8 @@
 ---
 - name: Check succses install vector
-  ansible.builtin.shell: "vector --version"
+  ansible.builtin.command: vector --version
   register: out
+
 - name: debug details
   debug:
    msg: "{{ out.stdout }}"

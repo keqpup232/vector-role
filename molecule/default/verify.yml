@@ -1,0 +1,15 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Check succses install vector
+    ansible.builtin.command: vector --version
+    register: out
+  - name: Example assertion
+    assert:
+      that: '"vector 0.21.1 (x86_64-unknown-linux-gnu 18787c0 2022-04-22)" == out.stdout'
+      fail_msg: "install not that version"
+      success_msg: "nice version"
